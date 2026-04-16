@@ -6,7 +6,6 @@ const productosRoutes = require('./routes/productos');
 const mensajesRoutes = require('./routes/mensajes');
 
 const app = express();
-const PORT = Number(process.env.PORT) || 3000;
 
 const allowedOrigins = (process.env.FRONTEND_URL || '*')
   .split(',')
@@ -36,11 +35,5 @@ app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
-
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`Servidor backend activo en http://localhost:${PORT}`);
-  });
-}
 
 module.exports = app;
